@@ -10,10 +10,10 @@ function Dashboard() {
     const carregarMovimentacoes = async () => {
       try {
         // O axios vai estar indo lá no backend buscar os dados
-        const resposta = await axios.get('http://localhost:3000/api/movimentacoes');
+        const resposta = await axios.get('http://localhost:3000/dashboard');
         
         // Salvando os dados reais no estado da tela
-        setMovimentacoes(resposta.data);
+        setMovimentacoes(resposta.data.ultimasMovimentacoes  ||  []);
       } catch (erro) {
         console.error("Erro ao buscar os dados:", erro);
       }
@@ -78,12 +78,12 @@ function Dashboard() {
             <tbody>
               {/*  o map vai criar uma linha pra cada item */}
               {movimentacoes.length > 0 ? (
-                movimentacoes.map((item, index) => (
-                  <tr key={index}>
-                    <td>{item.data}</td>
-                    <td>{item.patrimonio}</td>
-                    <td>{item.usuario}</td>
-                    <td>{item.status}</td>
+                movimentacoes.map((item) => (
+                  <tr key={item.id}>
+                    <td>{new Date(item.createdAt).toLocaleString('pt-BR')}</td>
+                    <td>{item.patrimonio?.nome}</td>
+                    <td>{item.usuario?.nome}</td>
+                    <td>{item.tipo}</td>
                   </tr>
                 ))
               ) : (

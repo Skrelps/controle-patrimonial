@@ -13,6 +13,20 @@ const dashboard = async (req, res) => {
       where: { status: 'Disponível' }
     })
 
+    const totalUsuarios = await prisma.usuario.count()
+
+    const totalEmprestimos = await prisma.movimentacao.count({
+        where: {
+            tipo: 'EMPRESTIMO'
+        }
+    })
+
+    const totalDevolucoes = await prisma.movimentacao.count({
+        where: {
+            tipo: 'DEVOLUCAO'
+        }
+    })
+
     const ultimasMovimentacoes = await prisma.movimentacao.findMany({
       take: 5,
       orderBy: { createdAt: 'desc' },
@@ -26,6 +40,9 @@ const dashboard = async (req, res) => {
       totalPatrimonios,
       emprestados,
       disponiveis,
+      totalUsuarios,
+      totalEmprestimos,
+      totalDevolucoes,
       ultimasMovimentacoes
     })
 
