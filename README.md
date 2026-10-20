@@ -106,7 +106,7 @@ cd backend
 npm install
 Create a .env file inside the backend folder:
 
-Snippet de código
+Snippet:
 DATABASE_URL="postgresql://user:password@localhost:5432/db_name?schema=public"
 JWT_SECRET="your_secret_key_here"
 Run migrations and start:
