@@ -92,7 +92,7 @@ A full-stack web application designed for asset managers to track, register, and
 
 ---
 
-## 🏃 How to Run the Project
+##  How to Run the Project
 
 Make sure you have Node.js and PostgreSQL installed.
 
